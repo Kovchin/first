@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-//Тестирование Git 2.22
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -99,6 +97,8 @@ Route::get('/db/relationship/oneToManyReverse/post/{id}/user', 'db\Relationship@
 Route::get('db/relationship/manyToMany/user/{id}/role', 'db\Relationship@manyToMany');
 //Многие ко многим вывод все таблиицы
 Route::get('db/relationship/manyToMany/user/role', 'db\RelationShip@manyToMany2');
+//TODO изучить отношение многие ко многим через
+
 
 //Test
 Route::get('/test/route', array('as' => 'nickname.array', function () {

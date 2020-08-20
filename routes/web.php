@@ -103,7 +103,10 @@ Route::get('/db/Relationship/manyToMany/user/{id}/role3', 'db\RelationShip@manyT
 Route::get('/db/relationship/manyToMany/user/{id}/role/pivot', 'db\RelationShip@manyToMany4');
 //Многие ко многим через
 Route::get('/db/relationship/hasManyThrough/country/{id}/posts', 'db\RelationShip@hasManyThrough');
-
+//TODO https://si-dev.com/ru/blog/laravel-html-to-pdf
+//Полиморфная связь (связь когда в базе есть ссылка на таблицу индекс которой будет использоваться)
+Route::get('/db/relationship/polymorphic/user/{id}/photo', 'db\RelationShip@polymorphic');
+Route::get('/db/relationship/polymorphic/post/{id}/photo', 'db\RelationShip@polymorphic1');
 
 
 //Test

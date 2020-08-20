@@ -418,7 +418,8 @@ use App\Country;
 
     <p>Вся заковыка тут</p>
 
-    <p>запрашиваем в таблице App\Post в которой есть индекс на пользователя user_id из таблицы App\User у которой в сою очередь есть поле country_id</p>
+    <p>запрашиваем в таблице App\Post в которой есть индекс на пользователя user_id из таблицы App\User у которой в сою
+        очередь есть поле country_id</p>
 
     <code>
         <pre>
@@ -428,9 +429,91 @@ use App\Country;
         </pre>
     </code>
 
+    <h2>Полтморфная свзяь</h2>
 
+    <p><a href="/db/relationship/polymorphic/user/1/photo">Пример1</a></p>
+    <p><a href="/db/relationship/polymorphic/post/1/photo">Пример2</a></p>
 
+    <h3>Миграция</h3>
+    Photo
+    <code>
+        <pre>
+                 Schema::create('photos', function (Blueprint $table) {
+            $table->id();
+            $table->string('path');
+            $table->integer('imageable_id');
+            $table->string('imageable_type');
+            $table->timestamps();
+        });
+        </pre>
+    </code>
 
+    <h3>Роутер</h3>
+    <code>
+        <pre>
+            Route::get('/db/relationship/polymorphic/user/{id}/photo', 'db\RelationShip@polymorphic');
+        Route::get('/db/relationship/polymorphic/post/{id}/photo', 'db\RelationShip@polymorphic1');
+        </pre>
+    </code>
+
+    <h3>Модель</h3>
+
+    <h4>
+        Photo
+    </h4>
+
+    <code>
+        <pre>
+                public function imageable(){
+
+        return $this->morphTo();
+
+    }
+        </pre>
+    </code>
+
+    <h4>User</h4>
+
+    <code>
+        <pre>
+                public function photos()
+    {
+
+        return $this->morphMany('App\Photo', 'imageable');
+    }
+        </pre>
+    </code>
+
+    <h4>Post</h4>
+
+    <code>
+        <pre>
+                public function photos()
+    {
+        return $this->morphMany('App\Photo', 'imageable');
+    }
+        </pre>
+    </code>
+
+    <h3>Контроллер</h3>
+
+<code>
+    <pre>
+            public function polymorphic($id)
+    {
+        $user = User::find($id);
+
+        return $user->photos;
+    }
+
+    public function polymorphic1($id)
+    {
+        $post = Post::find($id);
+
+        return $post->photos;
+    }
+    </pre>
+</code>
 </code>
 </body>
 </html>

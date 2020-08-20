@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\db;
 
 use App\Http\Controllers\Controller;
+use App\Photo;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Role;
 use App\Country;
+//use App\Photo;
 
 class Relationship extends Controller
 {
@@ -80,15 +82,30 @@ class Relationship extends Controller
 
         //return $user->roles[0]['pivot']['created_at'];
 
-        foreach ($user->roles as $role){
+        foreach ($user->roles as $role) {
             return $role->pivot->created_at;
         }
     }
 
-    public function hasManyThrough($id){
+    public function hasManyThrough($id)
+    {
         $country = Country::find($id);
 
-        return  $country->posts;
+        return $country->posts;
+    }
+
+    public function polymorphic($id)
+    {
+        $user = User::find($id);
+
+        return $user->photos;
+    }
+
+    public function polymorphic1($id)
+    {
+        $post = Post::find($id);
+
+        return $post->photos;
     }
 
 }

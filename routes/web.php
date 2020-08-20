@@ -94,10 +94,16 @@ Route::get('/db/relationship/oneToMany/user/{id}/post', 'db\Relationship@oneToMa
 //Один ко многим обратный вызов
 Route::get('/db/relationship/oneToManyReverse/post/{id}/user', 'db\Relationship@oneToManyInverse');
 //Многие ко многим
-Route::get('db/relationship/manyToMany/user/{id}/role', 'db\Relationship@manyToMany');
+Route::get('/db/relationship/manyToMany/user/{id}/role', 'db\Relationship@manyToMany');
 //Многие ко многим вывод все таблиицы
-Route::get('db/relationship/manyToMany/user/role', 'db\RelationShip@manyToMany2');
-//TODO изучить отношение многие ко многим через
+Route::get('/db/relationship/manyToMany/user/role', 'db\RelationShip@manyToMany2');
+//Многие ко многим обратный вызов (хотя в данном случае тут нет такого понятия как обратный вызов)
+Route::get('/db/Relationship/manyToMany/user/{id}/role3', 'db\RelationShip@manyToMany3');
+//Многие ко многим доступ к промежуточной таблице
+Route::get('/db/relationship/manyToMany/user/{id}/role/pivot', 'db\RelationShip@manyToMany4');
+//Многие ко многим через
+Route::get('/db/relationship/hasManyThrough/country/{id}/posts', 'db\RelationShip@hasManyThrough');
+
 
 
 //Test

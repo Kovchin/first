@@ -37,14 +37,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function post(){
+    public function post()
+    {
 
         return $this->hasOne('App\Post', 'user_id');
 
     }
 
-    public function posts(){
+    public function posts()
+    {
 
-        return $this->hasMany('App\Post'.'user_id');
+        return $this->hasMany('App\Post' . 'user_id');
+    }
+
+    public function roles()
+    {
+
+        return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id')->withPivot('created_at');
     }
 }

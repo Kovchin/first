@@ -7,40 +7,48 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Role;
+use App\Country;
 
 class Relationship extends Controller
 {
-    public function main(){
+    public function main()
+    {
         return view('db\relationship');
     }
 
-    public function oneToOne($id){
+    public function oneToOne($id)
+    {
 
         $post = User::find($id)->post;
 
         return $post;
     }
 
-    public function oneToOneInverse($id){
+    public function oneToOneInverse($id)
+    {
         $user = Post::find($id)->user;
 
         return $user;
     }
 
-    public function oneToMany($id){
+    public function oneToMany($id)
+    {
 
         $post = User::find($id)->posts;
 
         return $post;
     }
 
-    public function oneToManyInverse($id){
+    public function oneToManyInverse($id)
+    {
 
         $user = Post::find($id)->userOneToManyReverse;
 
         return $user;
     }
-    public function manyToMany($id){
+
+    public function manyToMany($id)
+    {
 
         $users = Role::find($id)->user;
 
@@ -48,11 +56,39 @@ class Relationship extends Controller
 
     }
 
-    public function manyToMany2(){
+    public function manyToMany2()
+    {
 
         $roles = Role::find(1)->user;
 
-return $roles;
+        return $roles;
+    }
+
+    public function manyToMany3($id)
+    {
+
+        $user = User::find($id);
+
+        return $user->roles;
+
+    }
+
+    public function manyToMany4($id)
+    {
+
+        $user = User::find($id);
+
+        //return $user->roles[0]['pivot']['created_at'];
+
+        foreach ($user->roles as $role){
+            return $role->pivot->created_at;
+        }
+    }
+
+    public function hasManyThrough($id){
+        $country = Country::find($id);
+
+        return  $country->posts;
     }
 
 }

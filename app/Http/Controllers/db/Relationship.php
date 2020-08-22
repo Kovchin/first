@@ -114,4 +114,10 @@ class Relationship extends Controller
         return $photo->imageable;
     }
 
+    public function polymorphic3($id){
+        $post = Post::find($id);
+
+return $post->tags;
+    }
+
 }

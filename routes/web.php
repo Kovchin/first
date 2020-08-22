@@ -113,6 +113,7 @@ Route::get('/db/relationship/polymorphic/showPhoto/{id}', 'db\RelationShip@polym
 //Многие ко многим полиморфная связь обратный вызов
 Route::get('/db/relationship/polymorphic/tag/post/{id}', 'db\RelationShip@polymorphic4');
 
+
 //TODO https://si-dev.com/ru/blog/laravel-html-to-pdf
 //TODO 72 урок
 

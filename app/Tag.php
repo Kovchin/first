@@ -9,6 +9,7 @@ class Tag extends Model
     public function posts()
     {
         return $this->morphedByMany('App\Post', 'taggable');
+
     }
 
     public function videos()

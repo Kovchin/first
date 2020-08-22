@@ -103,12 +103,18 @@ Route::get('/db/Relationship/manyToMany/user/{id}/role3', 'db\RelationShip@manyT
 Route::get('/db/relationship/manyToMany/user/{id}/role/pivot', 'db\RelationShip@manyToMany4');
 //Многие ко многим через
 Route::get('/db/relationship/hasManyThrough/country/{id}/posts', 'db\RelationShip@hasManyThrough');
-//TODO https://si-dev.com/ru/blog/laravel-html-to-pdf
 //Полиморфная связь (связь когда в базе есть ссылка на таблицу индекс которой будет использоваться)
 Route::get('/db/relationship/polymorphic/user/{id}/photo', 'db\RelationShip@polymorphic');
 Route::get('/db/relationship/polymorphic/post/{id}/photo', 'db\RelationShip@polymorphic1');
 //Полиморфная связь в обратном направлении
-Route::get('db/relationship/polymorphic/photo/{id}', 'db\RelationShip@polymorphic2');
+Route::get('/db/relationship/polymorphic/photo/{id}', 'db\RelationShip@polymorphic2');
+//Многие ко многим полиморфная связь
+Route::get('/db/relationship/polymorphic/showPhoto/{id}', 'db\RelationShip@polymorphic3');
+//Многие ко многим полиморфная связь обратный вызов
+Route::get('/db/relationship/polymorphic/tag/post/{id}', 'db\RelationShip@polymorphic4');
+
+//TODO https://si-dev.com/ru/blog/laravel-html-to-pdf
+//TODO 72 урок
 
 //Test
 Route::get('/test/route', array('as' => 'nickname.array', function () {

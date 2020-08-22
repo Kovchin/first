@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<body lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>relationship</title>
 </head>
-<body>
 <h1>Relationship</h1>
 
 <h2>Один к одному</h2>
@@ -217,7 +216,7 @@ class Role extends Model
 
     }
     </pre>
-
+</code>
     <h3>2</h3>
 
     <p><a href="/db/relationship/manyToMany/user/role">Пример</a></p>
@@ -291,13 +290,13 @@ class Role extends Model
     <h4>Модель</h4>
 
     <code>
-    <pre>
-            public function roles()
-    {
+        <pre>
+                public function roles()
+        {
 
-        return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id')-><b>withPivot('created_at')</b>;
-    }
-    </pre>
+            return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id')-><b>withPivot('created_at')</b>;
+        }
+        </pre>
     </code>
 
     <h4>Контроллер</h4>
@@ -497,7 +496,7 @@ use App\Country;
 
     <h3>Контроллер</h3>
 
-<code>
+    <code>
     <pre>
             public function polymorphic($id)
     {
@@ -513,11 +512,11 @@ use App\Country;
         return $post->photos;
     }
     </pre>
-</code>
+    </code>
 
     <h2>Обратный вызов</h2>
 
-    <p><a href="db/relationship/polymorphic/photo/1">Пример</a></p>
+    <p><a href='/db/relationship/polymorphic/photo/1'>Пример</a></p>
 
     <h3>Роутер</h3>
 
@@ -539,6 +538,128 @@ use App\Country;
     }
         </pre>
     </code>
+
+<h2>Многие ко многим полиморфная связь</h2>
+
+<p><a href="/db/relationship/polymorphic/showPhoto/1">Пример</a></p>
+
+<h3>artisan</h3>
+
+<code>
+    <pre>
+        php artisan make:model Video -m
+        php artisan make:model Tag -m
+        php artisan make:model Taggable -m
+
+    </pre>
+</code>
+
+<h3>Миграции</h3>
+
+<h4>Video</h4>
+
+<code>
+    <pre>
+        public function up()
+        {
+        Schema::create('videos', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('name');
+        $table->timestamps();
+        });
+    </pre>
+</code>
+
+<h4>Tag</h4>
+
+<code>
+    <pre>
+            public function up()
+    {
+        Schema::create('tags', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+        });
+    }
+    </pre>
+</code>
+
+<h4>Taggable</h4>
+
+<code>
+    <pre>
+            public function up()
+    {
+        Schema::create('taggables', function (Blueprint $table) {
+            $table->integer('tag_id');
+            $table->integer('taggable_id');
+            $table->string('taggable_type');
+        });
+    }
+    </pre>
+</code>
+
+<h3>Модели</h3>
+
+<h4>Post</h4>
+
+<code>
+    <pre>
+            public function photos()
+    {
+        return $this->morphMany('App\Photo', 'imageable');
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany('App\Tag', 'taggable');
+    }
+    </pre>
+</code>
+
+<h4>Tag</h4>
+
+<code>
+    <pre>
+        class Tag extends Model
+{
+    public function posts()
+    {
+        return $this->morphedByMany('App\Post', 'taggable');
+    }
+
+    public function videos()
+    {
+        return $this->morphedByMany('App\Video', 'taggable');
+    }
+}
+    </pre>
+</code>
+
+<h3>Роутер</h3>
+
+<code>
+    <pre>
+        Route::get('/db/relationship/polymorphic/showPhoto/{id}', 'db\RelationShip@polymorphic3');
+    </pre>
+</code>
+
+<h3>Контроллер</h3>
+
+<code>
+    <pre>
+            public function polymorphic3($id){
+        $post = Post::find($id);
+
+return $post->tags;
+    }
+    </pre>
+</code>
+
+<h2>Многие ко многим полиморфная связь обратный вызов</h2>
+
+<p><a href="/db/relationship/polymorphic/tag/post/1">Пример</a></p>
 
 </body>
 </html>

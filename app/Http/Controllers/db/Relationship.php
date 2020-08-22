@@ -4,6 +4,7 @@ namespace App\Http\Controllers\db;
 
 use App\Http\Controllers\Controller;
 use App\Photo;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
@@ -112,6 +113,18 @@ class Relationship extends Controller
         $photo = Photo::findOrFail($id);
 
         return $photo->imageable;
+    }
+
+    public function polymorphic3($id){
+        $post = Post::find($id);
+
+return $post->tags;
+    }
+
+    public function polymorphic4($id){
+        $tag = Tag::find($id);
+
+        return $tag->posts;
     }
 
 }

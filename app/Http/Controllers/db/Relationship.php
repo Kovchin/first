@@ -9,7 +9,6 @@ use App\User;
 use App\Post;
 use App\Role;
 use App\Country;
-//use App\Photo;
 
 class Relationship extends Controller
 {
@@ -106,6 +105,13 @@ class Relationship extends Controller
         $post = Post::find($id);
 
         return $post->photos;
+    }
+
+    public function polymorphic2($id){
+
+        $photo = Photo::findOrFail($id);
+
+        return $photo->imageable;
     }
 
 }

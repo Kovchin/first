@@ -514,6 +514,31 @@ use App\Country;
     }
     </pre>
 </code>
-</code>
+
+    <h2>Обратный вызов</h2>
+
+    <p><a href="db/relationship/polymorphic/photo/1">Пример</a></p>
+
+    <h3>Роутер</h3>
+
+    <code>
+        <pre>
+            Route::get('db/relationship/polymorphic/photo/{id}', 'db\RelationShip@polymorphic2');
+        </pre>
+    </code>
+
+    <h3>Контроллер</h3>
+
+    <code>
+        <pre>
+    public function polymorphic2($id){
+
+        $photo = Photo::findOrFail($id);
+
+        return $photo->imageable;
+    }
+        </pre>
+    </code>
+
 </body>
 </html>

@@ -107,7 +107,8 @@ Route::get('/db/relationship/hasManyThrough/country/{id}/posts', 'db\RelationShi
 //Полиморфная связь (связь когда в базе есть ссылка на таблицу индекс которой будет использоваться)
 Route::get('/db/relationship/polymorphic/user/{id}/photo', 'db\RelationShip@polymorphic');
 Route::get('/db/relationship/polymorphic/post/{id}/photo', 'db\RelationShip@polymorphic1');
-
+//Полиморфная связь в обратном направлении
+Route::get('db/relationship/polymorphic/photo/{id}', 'db\RelationShip@polymorphic2');
 
 //Test
 Route::get('/test/route', array('as' => 'nickname.array', function () {

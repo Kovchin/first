@@ -124,6 +124,7 @@ return $post->tags;
     public function polymorphic4($id){
         $tag = Tag::find($id);
 
+
         return $tag->posts;
     }
 

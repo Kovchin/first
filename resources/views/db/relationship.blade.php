@@ -661,5 +661,6 @@ return $post->tags;
 
 <p><a href="/db/relationship/polymorphic/tag/post/1">Пример</a></p>
 
+
 </body>
 </html>

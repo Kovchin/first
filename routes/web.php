@@ -116,7 +116,7 @@ Route::get('/db/relationship/polymorphic/tag/post/{id}', 'db\RelationShip@polymo
 
 //TODO https://si-dev.com/ru/blog/laravel-html-to-pdf
 //TODO 72 урок
-
+//Проверка работоспособности Git
 //Test
 Route::get('/test/route', array('as' => 'nickname.array', function () {
 

@@ -94,6 +94,7 @@ public function down()
     <p><a href="/db/sqlQueries">Прямые SQL запросы</a></p>
     <p><a href="/db/eloquent">Eloquent</a></p>
     <p><a href="/db/relationship">Отношения полей в базах данных</a></p>
+    <p><a href="/db/tinker">tinker</a></p>
 </head>
 <body>
 

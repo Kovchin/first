@@ -11,6 +11,7 @@
             <a href="https://nova.laravel.com">controllers</a>
             <a href="https://forge.laravel.com">Views</a>
             <a href="/db">db</a>
+            <a href="/bootstrap">bootstrap</a>
             <a href="https://github.com/laravel/laravel">GitHub</a>
         </div>
 

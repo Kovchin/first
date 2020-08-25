@@ -113,10 +113,15 @@ Route::get('/db/relationship/polymorphic/showPhoto/{id}', 'db\RelationShip@polym
 //Многие ко многим полиморфная связь обратный вызов
 Route::get('/db/relationship/polymorphic/tag/post/{id}', 'db\RelationShip@polymorphic4');
 
+//Tinker
+Route::get('/db/tinker', 'db\Tinker@main');
+
+//Bootstrap
+Route::get('/bootstrap', 'bootstrap@main');
+
 
 //TODO https://si-dev.com/ru/blog/laravel-html-to-pdf
-//TODO 72 урок
-//Проверка работоспособности Git
+
 //Test
 Route::get('/test/route', array('as' => 'nickname.array', function () {
 
